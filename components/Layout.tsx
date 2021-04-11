@@ -13,7 +13,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import { runInThisContext } from "node:vm";
-import { makeObservable, observable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import { observer } from "mobx-react-lite";
 
 type Props = {
@@ -28,7 +28,18 @@ class ButtonState {
     this.pressed = false;
     makeObservable(this, {
       pressed: observable,
+      onTogglePressed: action.bound,
     });
+  }
+
+  onTogglePressed() {
+    this.pressed = !this.pressed;
+
+    if (this.pressed) {
+      // Prosemirror code to make selection bold
+    } else {
+      // Prosemirror code to make selection normal
+    }
   }
 }
 
@@ -67,9 +78,7 @@ const Layout = observer(({ children, title = "This is the default title" }: Prop
         <StyledButton
           icon={<DeleteOutlined />}
           fontWeight={buttonState.pressed ? "bold" : "normal"}
-          onClick={() => {
-            buttonState.pressed = !buttonState.pressed;
-          }}
+          onClick={buttonState.onTogglePressed}
         >
           Delete
         </StyledButton>
