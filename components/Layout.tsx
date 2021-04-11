@@ -34,7 +34,7 @@ class ButtonState {
   // Actions in mobx change state and once you declare them as actions,
   // mobx knows to not re-render components until actions are done.
   // This is a bound action (action.bound, see above in makeObservable) which is the same as js bind:
-  // it makes sure to keep to this on this object, so you can pass this function
+  // it makes sure to keep the this on this object, so you can pass this function
   // directly as an event handler
   onTogglePressed() {
     this.pressed = !this.pressed;
